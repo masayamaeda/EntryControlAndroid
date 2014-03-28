@@ -5,7 +5,7 @@ import java.util.Map;
 
 import jp.isaplan.nfcentrycontrol.bean.UserInfo;
 import jp.isaplan.nfcentrycontrol.gsonrequest.GsonRequest;
-import jp.isaplan.nfcsample.R;
+import jp.isaplan.nfcentrycontrol.R;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Intent;
