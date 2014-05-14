@@ -8,7 +8,6 @@ import jp.isaplan.nfcentrycontrol.gsonrequest.GsonRequest;
 import jp.isaplan.nfcentrycontrol.R;
 import android.app.Activity;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentFilter.MalformedMimeTypeException;
@@ -51,9 +50,7 @@ public class MainActivity extends Activity {
 
 		Intent intent = this.getIntent();
 		if (intent.getAction().equals(NfcAdapter.ACTION_TAG_DISCOVERED)) {
-			StringBuilder sb = new StringBuilder();
-			getCardId(intent, sb);
-			mCardId = new String(sb);
+			mCardId = getCardId(intent);
 			mTextViewCardId.setText(mCardId);
 			requestUserInfo(mCardId);
 		}
@@ -69,9 +66,7 @@ public class MainActivity extends Activity {
 	protected void onNewIntent(Intent intent) {
 		super.onNewIntent(intent);
 		if (intent.getAction().equals(NfcAdapter.ACTION_TAG_DISCOVERED)) {
-			StringBuilder sb = new StringBuilder();
-			getCardId(intent, sb);
-			mCardId = new String(sb);
+			mCardId = getCardId(intent);
 			mTextViewCardId.setText(mCardId);
 			requestUserInfo(mCardId);
 		}
@@ -140,7 +135,13 @@ public class MainActivity extends Activity {
         }
     };
 
-	private void getCardId(Intent intent, StringBuilder sb) {
+    /**
+     * カードID文字列取得
+     * @param intent NFCダグ読み取りのインテント
+     * @return カードID文字列
+     */
+    private String getCardId(Intent intent) {
+		StringBuilder sb = new StringBuilder();
 		byte[] cardId = new byte[] { 0 };
 	    Tag tag = (Tag) intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
 	    if (tag != null) {
@@ -153,5 +154,6 @@ public class MainActivity extends Activity {
 				sb.append(new String(String.format("%02X", value & 0xFF)));
 			}
 		}
+	    return new String(sb);
 	}
 }

@@ -14,7 +14,8 @@ public class ConfirmRegistActivity extends Activity {
 	
     @Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+		Log.d(TAG, "onCreate");
+    	super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_comfirm_regist);
 		
 		mCardId = "";
