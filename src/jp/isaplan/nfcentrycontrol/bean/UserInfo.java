@@ -22,5 +22,4 @@ public class UserInfo {
 	public void setMailaddr(String mailaddr) {
 		this.mailaddr = mailaddr;
 	}
-
 }

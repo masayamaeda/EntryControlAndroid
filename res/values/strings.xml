@@ -1,5 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">NFCSample</string>
-
+    <string name="app_name">NFC勤怠管理</string>
+    <string name="title_activity_select_card_user">SelectCardUserActivity</string>
+    <string name="title_activity_comfirm_regist">ConfirmRegistActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="select_card_user_mesage">このカードの使用者を選択してください</string>
+    <string name="dialog_label_ok">OK</string>
+    <string name="dialog_label_cancel">キャンセル</string>
+    <string name="dialog_confirm_label_regist_user">%sさんで登録します。\nよろしいですか？</string>
+    <string name="dialog_label_regist_user">%sさんで登録しました。</string>
+    
 </resources>

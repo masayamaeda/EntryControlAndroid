@@ -8,6 +8,7 @@ import jp.isaplan.nfcentrycontrol.gsonrequest.GsonRequest;
 import jp.isaplan.nfcentrycontrol.R;
 import android.app.Activity;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentFilter.MalformedMimeTypeException;
@@ -53,9 +54,7 @@ public class MainActivity extends Activity {
 			StringBuilder sb = new StringBuilder();
 			getCardId(intent, sb);
 			mCardId = new String(sb);
-
 			mTextViewCardId.setText(mCardId);
-
 			requestUserInfo(mCardId);
 		}
 	}
@@ -116,7 +115,17 @@ public class MainActivity extends Activity {
 		public void onResponse(UserInfo response) {
             Log.d(TAG, "onResponse");
             if (response != null) {
-            	mTextViewUserName.setText(response.getName());
+            	if (response.getId() == 0) {
+	            	Intent intent = new Intent();
+	            	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+	                intent.setClassName("jp.isaplan.nfcentrycontrol","jp.isaplan.nfcentrycontrol.ConfirmRegistActivity");
+	                intent.putExtra("CardID", mCardId);
+	                finish();
+	                startActivity(intent);
+            	}
+            	else {
+            		mTextViewUserName.setText(response.getName());
+            	}
             }
        	}
     };
