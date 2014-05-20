@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
-        android:text="@string/select_card_user_mesage"
+        android:text="@string/label_select_card_user_mesage"
         android:textSize="16sp" />
 
     <ListView

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import jp.isaplan.nfcentrycontrol.bean.ResultMessage;
 import jp.isaplan.nfcentrycontrol.bean.UserInfo;
 import jp.isaplan.nfcentrycontrol.gsonrequest.GsonRequest;
 
@@ -137,7 +138,7 @@ public class SelectCardUserActivity extends Activity {
 			new AlertDialog.Builder(SelectCardUserActivity.this)
 			.setTitle(String.format(getString(R.string.dialog_confirm_label_regist_user), mRegistUserName))
 			.setPositiveButton(
-			getString(R.string.dialog_label_ok),
+			getString(R.string.button_label_ok),
 			new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) {
 					// OK時の処理
@@ -149,14 +150,14 @@ public class SelectCardUserActivity extends Activity {
 			        params.put("user_id", String.valueOf(mUserInfoList.get(selectPosition).getId()));
 			        params.put("card_id", mCardId);
 			        // リクエストの初期設定
-			        GsonRequest<UserInfo> myRequest = new GsonRequest<UserInfo>(url, params,
-			        		UserInfo.class, registUserResponseListener, registUserErrorListener);
+			        GsonRequest<ResultMessage> myRequest = new GsonRequest<ResultMessage>(url, params,
+			        		ResultMessage.class, registUserResponseListener, registUserErrorListener);
 			        // リクエストキューにリクエスト追加
 			        mQueue.add(myRequest);
 				} 
 			})
 			.setNegativeButton( 
-			getString(R.string.dialog_label_cancel),
+			getString(R.string.button_label_cancel),
 			new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int which) { 
 					// NO時の処理
@@ -169,20 +170,35 @@ public class SelectCardUserActivity extends Activity {
     /**
      * カードユーザー登録APIリクエストのリスナー
      */
-    private Listener<UserInfo> registUserResponseListener = new Listener<UserInfo>() {
+    private Listener<ResultMessage> registUserResponseListener = new Listener<ResultMessage>() {
 		@Override
-		public void onResponse(UserInfo response) {
+		public void onResponse(ResultMessage response) {
             Log.d(TAG, "onResponse");
-			new AlertDialog.Builder(SelectCardUserActivity.this)
-			.setTitle(String.format(getString(R.string.dialog_label_regist_user), mRegistUserName))
-			.setPositiveButton(
-			getString(R.string.dialog_label_ok),
-			new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int which) {
-		            finish();
-				} 
-			})
-			.show(); 
+            String message = response.getMessage();
+            if (message.isEmpty()) {
+				new AlertDialog.Builder(SelectCardUserActivity.this)
+				.setTitle(String.format(getString(R.string.dialog_label_regist_user), mRegistUserName))
+				.setPositiveButton(
+				getString(R.string.button_label_ok),
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+			            finish();
+					} 
+				})
+				.show();
+            }
+            else {
+				new AlertDialog.Builder(SelectCardUserActivity.this)
+				.setTitle(response.getMessage())
+				.setPositiveButton(
+				getString(R.string.button_label_ok),
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int which) {
+			            finish();
+					} 
+				})
+				.show();
+			}
        	}
     };
 
