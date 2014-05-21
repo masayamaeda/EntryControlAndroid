@@ -182,7 +182,7 @@ public class SelectCardUserActivity extends Activity {
 				getString(R.string.button_label_ok),
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
-			            finish();
+						moveTaskToBack(true); 
 					} 
 				})
 				.show();
@@ -194,7 +194,7 @@ public class SelectCardUserActivity extends Activity {
 				getString(R.string.button_label_ok),
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int which) {
-			            finish();
+						moveTaskToBack(true); 
 					} 
 				})
 				.show();

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -49,10 +50,8 @@ public class ConfirmRegistActivity extends Activity {
 
     private void onClickRegist() {
     	Intent intent = new Intent();
-    	intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setClassName("jp.isaplan.nfcentrycontrol","jp.isaplan.nfcentrycontrol.SelectCardUserActivity");
         intent.putExtra("CardID", mCardId);
-        finish();
         startActivity(intent);
     }
 
@@ -69,5 +68,14 @@ public class ConfirmRegistActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
+	}
+
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			ConfirmRegistActivity.this.finish();
+			return true;
+		}
+		return false;
 	}
 }

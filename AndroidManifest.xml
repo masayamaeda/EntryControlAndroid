@@ -40,11 +40,11 @@
         </activity>
         <activity
             android:name="jp.isaplan.nfcentrycontrol.ConfirmRegistActivity"
-            android:label="@string/title_activity_comfirm_regist" >
+            android:label="@string/title_activity_comfirm_regist">
         </activity>
         <activity
             android:name="jp.isaplan.nfcentrycontrol.SelectCardUserActivity"
-            android:label="@string/title_activity_select_card_user" >
+            android:label="@string/title_activity_select_card_user">
         </activity>
     </application>
 

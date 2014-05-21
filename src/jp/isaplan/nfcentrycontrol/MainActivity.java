@@ -175,6 +175,7 @@ public class MainActivity extends Activity {
         // 送信パラメーター
         Map<String, String> params = new HashMap<String, String>();
         params.put("user_id", String.valueOf(mUserId));	// ユーザーID
+        params.put("card_id", mCardId);					// カードID
         params.put("kind", String.valueOf(mode));		// 出社/退社
         // リクエストの初期設定
         GsonRequest<ResultMessage> myRequest = new GsonRequest<ResultMessage>(url, params,
