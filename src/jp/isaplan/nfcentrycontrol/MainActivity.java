@@ -116,7 +116,7 @@ public class MainActivity extends Activity {
         Log.d(TAG, "requestUserInfo");
         Log.d(TAG, "userId:" + userId);
         mQueue = Volley.newRequestQueue(getApplicationContext());
-        String url = "http://192.168.1.66:8080/entrycontrol/getuserinfo";
+        String url = "http://192.168.1.66:8080/entrycontrol/api/getuserinfo";
         // 送信したいパラメーター
         Map<String, String> params = new HashMap<String, String>();
         params.put("id", userId);
@@ -171,7 +171,7 @@ public class MainActivity extends Activity {
         Log.d(TAG, "requestUserInfo");
         mQueue = Volley.newRequestQueue(getApplicationContext());
         // WebAPIのURL
-        String url = "http://192.168.1.66:8080/entrycontrol/recordtime";
+        String url = "http://192.168.1.66:8080/entrycontrol/api/recordtime";
         // 送信パラメーター
         Map<String, String> params = new HashMap<String, String>();
         params.put("user_id", String.valueOf(mUserId));	// ユーザーID

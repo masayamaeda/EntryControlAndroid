@@ -83,7 +83,7 @@ public class SelectCardUserActivity extends Activity {
         Log.d(TAG, "requestAllUser");
         // ユーザー一覧取得APIを呼び出す
         mQueue = Volley.newRequestQueue(getApplicationContext());
-        String url = "http://192.168.1.66:8080/entrycontrol/getalluser";
+        String url = "http://192.168.1.66:8080/entrycontrol/api/getalluser";
         // リクエストの初期設定
         JsonArrayRequest myRequest = new JsonArrayRequest(url, getAllUserResponseListener, getAllUserErrorListener);
         // リクエストキューにリクエスト追加
@@ -144,7 +144,7 @@ public class SelectCardUserActivity extends Activity {
 					// OK時の処理
 					// カードユーザー登録APIを呼び出す
 					mQueue = Volley.newRequestQueue(getApplicationContext());
-			        String url = "http://192.168.1.66:8080/entrycontrol/addcard";
+			        String url = "http://192.168.1.66:8080/entrycontrol/api/addcard";
 			        // 送信したいパラメーター
 			        Map<String, String> params = new HashMap<String, String>();
 			        params.put("user_id", String.valueOf(mUserInfoList.get(selectPosition).getId()));
